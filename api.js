@@ -43,7 +43,10 @@ app.get('/restaurents',(req,res) => {
     var query = {};
     if(req.query.city){
         query={city:req.query.city}
-    }else{
+    }else if(req.query.mealtype){
+        query={city:req.query.mealtype}
+    }
+    else{
         query={}
     }
     db.collection('restaurent').find(query).toArray((err,result) => {
