@@ -51,7 +51,7 @@ app.get('/restaurents',(req,res) => {
         res.send(result)
     })
 })
-//list of meal type
+//list of meal order
 app.get('/order', (req,res)=>{
     db.collection('order').find({}).toArray((err,result)=>{
         if (err) throw err;
