@@ -64,6 +64,19 @@ app.get('/restaurentsDetails/:id',(req,res) => {
     })
 })
 
+//place order
+
+app.post('/placeorder',(req,res)=>{
+    db.collection('order').insertOne(req.body,(err,result)=>{
+        if(err){
+            throw err 
+        }else{
+            res.send('Data added')
+        }
+    })
+
+});
+
 
 
 
