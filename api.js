@@ -64,17 +64,17 @@ app.get('/restaurentsDetails/:id',(req,res) => {
     })
 })
 
-//place order
 
-app.post('/placeorder',(req,res)=>{
-    db.collection('order').insertOne(req.body,(err,result)=>{
+
+//placeorder
+app.post('/placeorder',(req,res) => {
+    db.collection('orders').insertOne(req.body,(err,result) => {
         if(err){
-            throw err 
+            throw err
         }else{
-            res.send('Data added')
+            res.send('Data Added')
         }
     })
-
 });
 
 app.get('/restaurantlist/:mealtype', (req,res) => {
