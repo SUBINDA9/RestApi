@@ -115,7 +115,7 @@ app.get('/restaurantlist/:mealtype', (req,res) => {
 });
 
 //list of meal order
-app.get('/order', (req,res)=>{
+app.get('/placeorder', (req,res)=>{
     db.collection('order').find({}).toArray((err,result)=>{
         if (err) throw err;
         res.send(result)
