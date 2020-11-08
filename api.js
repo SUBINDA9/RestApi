@@ -8,6 +8,7 @@ var mongourl = "mongodb+srv://admin:admin28@09@srfoodcourt.1zmep.mongodb.net/edu
 var cors = require('cors');
 var db;
 
+
 app.use(cors());
 
 app.get('/',(req,res) => {
@@ -107,12 +108,6 @@ app.get('/restaurantlist/:mealtype', (req,res) => {
 });
 
 
-
-
-
-
-
-
 //list of meal order
 app.get('/order', (req,res)=>{
     db.collection('order').find({}).toArray((err,result)=>{
@@ -120,6 +115,16 @@ app.get('/order', (req,res)=>{
         res.send(result)
     }) 
 })
+
+
+//to run frontend code
+app.use(express.static(path.join(__dirname,'build')));
+
+app.get('/',(req,res) => {
+    res.sendFile(path.join(__dirname,'build/index.html'))
+});
+
+
 MongoClient.connect(mongourl,(err,connection) => {
     if(err) throw err;
     db = connection.db('edurekazomato');
