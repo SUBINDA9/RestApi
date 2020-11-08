@@ -107,7 +107,7 @@ app.get('/restaurantlist/:mealtype', (req,res) => {
 
 //orders
 app.get('/orders',(req,res) => {
-    db.collection('order').find({}).toArray((err,result) =>{
+    db.collection('orders').find({}).toArray((err,result) =>{
         if(err) throw err;
         res.send(result)
     })
@@ -115,7 +115,7 @@ app.get('/orders',(req,res) => {
 
 //placeorder
 app.post('/placeorder',(req,res) => {
-    db.collection('order').insertOne(req.body,(err,result) => {
+    db.collection('orders').insertOne(req.body,(err,result) => {
         if(err){
             throw err
         }else{
