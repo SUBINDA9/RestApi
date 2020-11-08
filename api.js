@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
+const path = require('path');
 var port = process.env.PORT || 0909;
+const http = require('http');
 var bodParser = require('body-parser');
 var mongo = require('mongodb');
 var MongoClient = mongo.MongoClient
@@ -10,9 +12,14 @@ var db;
 
 app.use(cors());
 
+
+
+app.use(express.static(path.join(__dirname,'build')));
+
 app.get('/',(req,res) => {
-    res.send(``)
+    res.sendFile(path.join(__dirname,'build/index.html'))
 });
+
 //health check
 app.get('/health',(req,res) => {
     res.send("Api is working")
@@ -60,7 +67,7 @@ app.get('/restaurentsDetails/:id',(req,res) => {
     console.log(req.params.id)
     var query = {_id:req.params.id}
     db.collection('restaurent').find(query).toArray((err,result) => {
-    	res.send(result)
+        res.send(result)
     })
 })
 
@@ -105,13 +112,6 @@ app.get('/restaurantlist/:mealtype', (req,res) => {
         res.send(result)
     })
 });
-
-
-
-
-
-
-
 
 //list of meal order
 app.get('/order', (req,res)=>{
