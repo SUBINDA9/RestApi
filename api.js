@@ -73,16 +73,7 @@ app.get('/restaurentsDetails/:id',(req,res) => {
 
 
 
-//placeorder
-app.post('/orders',(req,res) => {
-    db.collection('order').insertOne(req.body,(err,result) => {
-        if(err){
-            throw err
-        }else{
-            res.send('Data Added')
-        }
-    })
-});
+
 
 ///Listing Page Api
 app.get('/restaurantlist/:mealtype', (req,res) => {
@@ -114,13 +105,24 @@ app.get('/restaurantlist/:mealtype', (req,res) => {
     })
 });
 
-//list of meal order
-app.get('/placeorder', (req,res)=>{
-    db.collection('order').find({}).toArray((err,result)=>{
-        if (err) throw err;
+//orders
+app.get('/orders',(req,res) => {
+    db.collection('order').find({}).toArray((err,result) =>{
+        if(err) throw err;
         res.send(result)
-    }) 
-})
+    })
+});
+
+//placeorder
+app.post('/placeorder',(req,res) => {
+    db.collection('order').insertOne(req.body,(err,result) => {
+        if(err){
+            throw err
+        }else{
+            res.send('Data Added')
+        }
+    })
+});
 MongoClient.connect(mongourl,(err,connection) => {
     if(err) throw err;
     db = connection.db('edurekazomato');
