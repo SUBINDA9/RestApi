@@ -63,15 +63,13 @@ app.get('/restaurents',(req,res) => {
 })
 
 //restaurents   restaurantDetails/1
-app.get('/restaurantDetails/:id',(req,res) => {
+app.get('/restaurentsDetails/:id',(req,res) => {
     console.log(req.params.id)
     var query = {_id:req.params.id}
-    db.collection('restaurent').find(query).toArray((err,result) =>{
-        if(err) throw err;
+    db.collection('restaurent').find(query).toArray((err,result) => {
         res.send(result)
     })
-});
-
+})
 
 
 
