@@ -84,6 +84,7 @@ app.post('/placeorder',(req,res) => {
     })
 });
 
+///Listing Page Api
 app.get('/restaurantlist/:mealtype', (req,res) => {
     var query = {"type.mealtype":req.params.mealtype};
     var sort = {cost:-1}
