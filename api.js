@@ -75,7 +75,7 @@ app.get('/restaurentsDetails/:id',(req,res) => {
 
 //placeorder
 app.post('/placeorder',(req,res) => {
-    db.collection('orders').insertOne(req.body,(err,result) => {
+    db.collection('order').insertOne(req.body,(err,result) => {
         if(err){
             throw err
         }else{
